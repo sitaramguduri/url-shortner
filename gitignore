@@ -1,0 +1,16 @@
+cat > .gitignore <<'EOF'
+# Go
+bin/
+*.exe
+*.out
+*.test
+
+# Editors
+.vscode/
+.idea/
+EOF
+
+cat > README.md <<'EOF'
+# tinyurl
+Tiny URL shortener with per-IP / per-API-key rate limiting in Go.
+EOF
