@@ -11,7 +11,7 @@ type LimiterMap struct {
 	m 		   map[string]*rate.Limiter
 }
 
-func newLimiterMap(newLimiter func() *rate.Limiter) *LimiterMap{
+func NewLimiterMap(newLimiter func() *rate.Limiter) *LimiterMap{
 	return &LimiterMap{
 		newLimiter:	newLimiter,
 		m:	make(map[string]*rate.Limiter),
@@ -30,7 +30,7 @@ func (lm *LimiterMap) Allow(key string) bool{
 	defer lm.mu.Unlock()
 	if l, ok = lm.m[key]; !ok {
 		l = lm.newLimiter()
-		lm.m[key] = 1
+		lm.m[key] = l
 	}
 	return l.Allow()
 }
